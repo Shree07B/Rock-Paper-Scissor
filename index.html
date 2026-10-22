@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-container">
+    <header>
+      <p class="eyebrow">JAVA WEB GAME</p>
+      <h1>Rock Paper Scissors</h1>
+      <p class="subtitle">Make your move. The computer is ready.</p>
+    </header>
+
+    <section class="scoreboard">
+      <div class="score-card"><span>YOU</span><strong id="player-score">0</strong></div>
+      <div class="round-card"><span>ROUND</span><strong id="round-number">0</strong></div>
+      <div class="score-card"><span>COMPUTER</span><strong id="computer-score">0</strong></div>
+    </section>
+
+    <section class="arena" aria-live="polite">
+      <div class="fighter"><span class="label">YOUR MOVE</span><div id="player-choice" class="choice">?</div></div>
+      <div class="versus">VS</div>
+      <div class="fighter"><span class="label">COMPUTER</span><div id="computer-choice" class="choice">?</div></div>
+    </section>
+
+    <section class="status">
+      <h2 id="result">Make your move!</h2>
+      <p id="message">Choose Rock, Paper or Scissors to start the round.</p>
+    </section>
+
+    <section class="moves" aria-label="Game choices">
+      <button class="move-button" data-choice="rock"><span>✊</span><b>Rock</b></button>
+      <button class="move-button" data-choice="paper"><span>✋</span><b>Paper</b></button>
+      <button class="move-button" data-choice="scissors"><span>✌️</span><b>Scissors</b></button>
+    </section>
+
+    <button id="reset-button" class="reset-button">↻ New Game</button>
+    <p id="error" class="error" role="alert"></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
