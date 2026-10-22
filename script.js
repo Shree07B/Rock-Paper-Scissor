@@ -13,46 +13,35 @@ const resultEl = document.getElementById('result');
 const messageEl = document.getElementById('message');
 const errorEl = document.getElementById('error');
 
-async function play(choice) {
+function play(choice) {
   errorEl.textContent = '';
-  resultEl.textContent = 'Playing...';
-  messageEl.textContent = 'Java is choosing the computer move.';
 
-  try {
-    const response = await fetch('/api/play', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ choice })
-    });
+  const choices = ['rock', 'paper', 'scissors'];
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-    if (!response.ok) throw new Error('The Java server could not process the move.');
-    const data = await response.json();
-
-    round++;
-    if (data.result === 'win') playerScore++;
-    if (data.result === 'lose') computerScore++;
-
-    playerScoreEl.textContent = playerScore;
-    computerScoreEl.textContent = computerScore;
-    roundEl.textContent = round;
-    playerChoiceEl.textContent = emoji[data.playerChoice];
-    computerChoiceEl.textContent = emoji[data.computerChoice];
-
-    if (data.result === 'win') {
-      resultEl.textContent = 'You Win! 🎉';
-      messageEl.textContent = `${capitalize(data.playerChoice)} beats ${data.computerChoice}.`;
-    } else if (data.result === 'lose') {
-      resultEl.textContent = 'Computer Wins!';
-      messageEl.textContent = `${capitalize(data.computerChoice)} beats ${data.playerChoice}.`;
-    } else {
-      resultEl.textContent = "It's a Draw!";
-      messageEl.textContent = 'Both players chose the same move.';
-    }
-  } catch (error) {
-    resultEl.textContent = 'Connection Error';
-    messageEl.textContent = 'Make sure the Java server is running.';
-    errorEl.textContent = error.message;
+  round++;
+  if (choice === computerChoice) {
+    resultEl.textContent = "It's a Draw!";
+    messageEl.textContent = 'Both players chose the same move.';
+  } else if (
+    (choice === 'rock' && computerChoice === 'scissors') ||
+    (choice === 'paper' && computerChoice === 'rock') ||
+    (choice === 'scissors' && computerChoice === 'paper')
+  ) {
+    playerScore++;
+    resultEl.textContent = 'You Win! 🎉';
+    messageEl.textContent = `${capitalize(choice)} beats ${computerChoice}.`;
+  } else {
+    computerScore++;
+    resultEl.textContent = 'Computer Wins!';
+    messageEl.textContent = `${capitalize(computerChoice)} beats ${choice}.`;
   }
+
+  playerScoreEl.textContent = playerScore;
+  computerScoreEl.textContent = computerScore;
+  roundEl.textContent = round;
+  playerChoiceEl.textContent = emoji[choice];
+  computerChoiceEl.textContent = emoji[computerChoice];
 }
 
 function capitalize(value) {
