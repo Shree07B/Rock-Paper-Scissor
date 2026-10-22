@@ -6,35 +6,22 @@ A simple browser-based Rock Paper Scissors game built as a college Java project.
 
 - HTML — game structure
 - CSS — responsive user interface
-- JavaScript — browser interaction and HTTP requests
-- Java 17 — game logic and web server
-- Maven — project build and run tool
+- JavaScript — browser interaction and game execution
+- Java 17 — college-project implementation of the game logic
+
+## Run directly in a browser
+
+The playable version is fully client-side. It does **not** require a JDK, Maven, Java server, or any installation.
+
+Open `index.html` in any modern browser on a phone or computer.
+
+You can also publish the repository as a static website using GitHub Pages and open the resulting website URL on your phone.
 
 ## How it works
 
-The browser loads the HTML, CSS and JavaScript from the Java server. When the player chooses Rock, Paper or Scissors, JavaScript sends the choice to the Java `/api/play` endpoint. Java generates a random computer choice, decides the winner and sends the result back as JSON.
+HTML provides the game structure and CSS provides the interface. JavaScript handles the browser-side gameplay, including the computer's random choice, winner calculation, score and round tracking. This allows the game to work entirely inside the browser.
 
-## Run the project
-
-### Requirements
-
-- Java JDK 17 or newer
-- Maven
-
-### Start the server
-
-From the project folder, run:
-
-```bash
-mvn clean compile
-mvn exec:java
-```
-
-Then open:
-
-`http://localhost:8080`
-
-Keep the terminal running while playing. Press `Ctrl+C` to stop the server.
+The `src/main/java` folder is retained as the Java implementation for the college Java requirement and for demonstrating the same game logic in Java.
 
 ## Project structure
 
@@ -58,4 +45,5 @@ Rock-Paper-Scissor/
 - Round counter
 - New Game button
 - Responsive HTML/CSS interface
-- Java backend connected through HTTP
+- Works directly on mobile browsers
+- No external runtime required for the browser version
